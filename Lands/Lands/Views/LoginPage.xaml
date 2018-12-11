@@ -3,21 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lands.Views.LoginPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Login">
+             Title="Lands">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Padding="10,20,10,5">
-                <Label 
-                Text="Lands"
-                FontSize="Large"
-                FontAttributes="Bold"
-                HorizontalOptions="Center"
-                HorizontalTextAlignment="Center"
-                />
-                <Image WidthRequest="200"
+        <ScrollView BackgroundColor="White" BindingContext="{Binding Login}">
+            <StackLayout Padding="5">
+                <Image WidthRequest="170"
                    HorizontalOptions="Center"
                    Source="Onu"/>
-                <Grid>
+                <Grid Margin="10,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="2*"/>
@@ -26,70 +19,112 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-
                     <Label
                         Grid.Row="0"
+                        TextColor="Black"
                         Grid.Column="0"
+                        VerticalOptions="Center"
                         Text="Email"
                 />
                     <Entry 
                         Placeholder="Enter your Email"
                         Keyboard="Email"
                         Grid.Row="0"
+                        Text="{Binding Email, Mode=TwoWay}"
+                        VerticalOptions="Center"
+                        PlaceholderColor="Gray"
                         Grid.Column="1">
                     </Entry>
                     <Label 
                         Grid.Row="1"
                         Grid.Column="0"
+                        TextColor="Black"
                         Text="Password"
+                        VerticalOptions="Center"
                 />
                     <Entry 
                         IsPassword="True"
                         Grid.Row="1"
+                        Text="{Binding Password, Mode=TwoWay}"
+                        VerticalOptions="Center"
+                        Placeholder="Enter your password"
+                        PlaceholderColor="Gray"
                         Grid.Column="1">
                     </Entry>
                 </Grid>
+                <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsRunning="{Binding IsRunning, Mode=TwoWay} ">
+                    
+                </ActivityIndicator>
                 <StackLayout 
-                    Orientation="Horizontal">
+                    Orientation="Horizontal" Margin="10,0">
                     <Label 
                         Text="Remember me on this device"
-                        VerticalOptions="Center"></Label>
+                        TextColor="Black"
+                        HorizontalOptions="StartAndExpand"
+                        VerticalOptions="CenterAndExpand"></Label>
                     <Switch 
-                        HorizontalOptions="End"></Switch>
+                        HorizontalOptions="End"
+                        IsToggled="{Binding IsRemembered, Mode=TwoWay}"
+                        VerticalOptions="Center"></Switch>
                 </StackLayout>
                 <Label Text="Forgot your password?"
                            TextColor="Blue"
-                           VerticalOptions="Start"
-                           HorizontalOptions="Center"/>
-                <StackLayout 
-                        Margin="40,0">
-                    
+                           HorizontalOptions="Center"
+                        VerticalOptions="CenterAndExpand"/>
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Start">
                     <Button
                         Text="Login"
                         BackgroundColor="Navy"
                         TextColor="White"
+                        HorizontalOptions="FillAndExpand"
                         HeightRequest="46"
+                        Command="{Binding LoginCommand}"
                         BorderRadius="23">
                     </Button>
                     <Button
-                        Text="Login"
+                        Text="Register"
                         BackgroundColor="Purple"
                         TextColor="White"
+                        Command="{Binding RegisterCommand}"
+                        HorizontalOptions="FillAndExpand"
                         HeightRequest="46"
                         BorderRadius="23">
                     </Button>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Grid VerticalOptions="EndAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                </Grid.RowDefinitions>
                     <Image
-                    WidthRequest="100"
+                        Grid.Row="0"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        Aspect="AspectFit"
+                        Margin="8"
+                        Grid.Column="0"
                     Source="facebookLogo"></Image>
                     <Image
-                    WidthRequest="100"
+                        Grid.Row="0"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        Aspect="AspectFit"
+                        Grid.Column="1"
                     Source="twitterLogo"></Image>
                     <Image
-                    WidthRequest="100"
+                        Grid.Row="0"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        Aspect="AspectFit"
+                        Grid.Column="2"
                     Source="instagramLogo"></Image>
-                </StackLayout>
+                </Grid>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
