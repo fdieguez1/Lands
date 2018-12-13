@@ -51,6 +51,9 @@ namespace Lands.ViewModels
             IsRemembered = true;
             isEnabledBool = true;
             //http://restcountries.eu/rest/v2/all
+            Email = "prueba@gmail.com";
+            Password = "1234";
+
         }
         #endregion
 

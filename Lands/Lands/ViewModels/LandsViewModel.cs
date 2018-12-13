@@ -24,9 +24,19 @@ namespace Lands.ViewModels
             apiService = new ApiService();
             LoadLands();
         }
+        private bool isRefreshing;
+
+        public bool IsRefreshing
+        {
+            get { return isRefreshing; }
+            set { SetValue(ref isRefreshing, value); }
+        }
+
+
 
         private async void LoadLands()
         {
+            IsRefreshing = true;
             var checkConection = await apiService.CheckConnection();
             if (!checkConection.IsSuccess) {
                 await Application.Current.MainPage.DisplayAlert(

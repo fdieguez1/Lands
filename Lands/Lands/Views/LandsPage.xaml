@@ -6,10 +6,9 @@
              Title="Lands">
     <ContentPage.Content>
         <StackLayout Padding="5">
-            <Label 
-                Text="LandsPage"
-                FontSize="Large"
-                />
+            <ListView ItemsSource="{Binding Lands}">
+                
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
