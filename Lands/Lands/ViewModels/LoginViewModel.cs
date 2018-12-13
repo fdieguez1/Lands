@@ -65,17 +65,6 @@ namespace Lands.ViewModels
 
         private async void Login()
         {
-            var checkConection = await apiService.CheckConnection();
-            if (!checkConection.IsSuccess)
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    checkConection.Message,
-                    "Accept"
-                    );
-                return;
-            }
-
             if (string.IsNullOrEmpty(Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
