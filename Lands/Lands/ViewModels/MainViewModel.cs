@@ -7,7 +7,13 @@ namespace Lands.ViewModels
     public class MainViewModel
     {
         #region ViewModels
-        public LoginViewModel Login {
+        public LoginViewModel Login
+        {
+            get;
+            set;
+        }
+        public LandsViewModel Lands
+        {
             get;
             set;
         }
@@ -15,7 +21,23 @@ namespace Lands.ViewModels
         #region Constructors
         public MainViewModel()
         {
-            this.Login = new LoginViewModel();
+            Login = new LoginViewModel();
+        }
+        #endregion
+
+        #region Singleton
+        private static MainViewModel instance;
+
+        public static MainViewModel GetInstance()
+        {
+            if (instance == null)
+            {
+                return new MainViewModel();
+            }
+            else
+            {
+                return instance;
+            }
         }
         #endregion
     }

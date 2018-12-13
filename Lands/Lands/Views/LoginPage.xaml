@@ -3,30 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Lands.Views.LoginPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Lands">
+             Title="Login">
     <ContentPage.Content>
-        <ScrollView BackgroundColor="White" BindingContext="{Binding Login}">
-            <StackLayout Padding="5">
-                <Image WidthRequest="170"
+        <RelativeLayout Padding="0">
+            <ScrollView 
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" 
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                BackgroundColor="White" BindingContext="{Binding Login}">
+                <StackLayout Padding="5">
+                    <Image WidthRequest="170"
                    HorizontalOptions="Center"
                    Source="Onu"/>
-                <Grid Margin="10,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Label
+                    <Grid Margin="10,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Label
                         Grid.Row="0"
                         TextColor="Black"
                         Grid.Column="0"
                         VerticalOptions="Center"
                         Text="Email"
                 />
-                    <Entry 
+                        <Entry 
                         Placeholder="Enter your Email"
                         Keyboard="Email"
                         Grid.Row="0"
@@ -34,15 +38,15 @@
                         VerticalOptions="Center"
                         PlaceholderColor="Gray"
                         Grid.Column="1">
-                    </Entry>
-                    <Label 
+                        </Entry>
+                        <Label 
                         Grid.Row="1"
                         Grid.Column="0"
                         TextColor="Black"
                         Text="Password"
                         VerticalOptions="Center"
                 />
-                    <Entry 
+                        <Entry 
                         IsPassword="True"
                         Grid.Row="1"
                         Text="{Binding Password, Mode=TwoWay}"
@@ -50,61 +54,60 @@
                         Placeholder="Enter your password"
                         PlaceholderColor="Gray"
                         Grid.Column="1">
-                    </Entry>
-                </Grid>
-                <ActivityIndicator VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" IsRunning="{Binding IsRunning, Mode=TwoWay} ">
-                    
-                </ActivityIndicator>
-                <StackLayout 
+                        </Entry>
+                    </Grid>
+
+                    <StackLayout 
                     Orientation="Horizontal" Margin="10,0">
-                    <Label 
+                        <Label 
                         Text="Remember me on this device"
                         TextColor="Black"
                         HorizontalOptions="StartAndExpand"
                         VerticalOptions="CenterAndExpand"></Label>
-                    <Switch 
+                        <Switch 
                         HorizontalOptions="End"
                         IsToggled="{Binding IsRemembered, Mode=TwoWay}"
                         VerticalOptions="Center"></Switch>
-                </StackLayout>
-                <Label Text="Forgot your password?"
+                    </StackLayout>
+                    <Label Text="Forgot your password?"
                            TextColor="Blue"
                            HorizontalOptions="Center"
                         VerticalOptions="CenterAndExpand"/>
-                <StackLayout Orientation="Horizontal"
+                    <StackLayout Orientation="Horizontal"
                              HorizontalOptions="FillAndExpand"
-                             VerticalOptions="Start">
-                    <Button
+                             VerticalOptions="Start"
+                             >
+                        <Button
                         Text="Login"
                         BackgroundColor="Navy"
                         TextColor="White"
                         HorizontalOptions="FillAndExpand"
                         HeightRequest="46"
-                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                         Command="{Binding LoginCommand}"
+                            IsEnabled="{Binding IsEnabledBool, Mode=TwoWay}"
                         BorderRadius="23">
-                    </Button>
-                    <Button
+                        </Button>
+                        <Button
                         Text="Register"
                         BackgroundColor="Purple"
                         TextColor="White"
                         Command="{Binding RegisterCommand}"
+                            IsEnabled="{Binding IsEnabledBool, Mode=TwoWay}"
                         HorizontalOptions="FillAndExpand"
-                        IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                         HeightRequest="46"
                         BorderRadius="23">
-                    </Button>
-                </StackLayout>
-                <Grid VerticalOptions="EndAndExpand">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="80"/>
-                </Grid.RowDefinitions>
-                    <Image
+                        </Button>
+                    </StackLayout>
+                    <Grid VerticalOptions="EndAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="80"/>
+                        </Grid.RowDefinitions>
+                        <Image
                         Grid.Row="0"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"
@@ -112,22 +115,31 @@
                         Margin="8"
                         Grid.Column="0"
                     Source="facebookLogo"></Image>
-                    <Image
+                        <Image
                         Grid.Row="0"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"
                         Aspect="AspectFit"
                         Grid.Column="1"
                     Source="twitterLogo"></Image>
-                    <Image
+                        <Image
                         Grid.Row="0"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"
                         Aspect="AspectFit"
                         Grid.Column="2"
                     Source="instagramLogo"></Image>
-                </Grid>
-            </StackLayout>
-        </ScrollView>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+            <ActivityIndicator VerticalOptions="CenterAndExpand" 
+                               HorizontalOptions="CenterAndExpand" 
+                               IsRunning="{Binding IsRunning}" 
+                               IsVisible="{Binding IsRunning}" 
+                               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}" 
+                               RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                               >
+            </ActivityIndicator>
+        </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>

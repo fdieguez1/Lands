@@ -1,67 +1,56 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
+using Lands.Views;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Lands.ViewModels
 {
-    public class LoginViewModel : INotifyPropertyChanged
+    public class LoginViewModel : BaseViewModel
     {
-        #region Events
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-        #region Attributes
-        private string email;
-        private String password;
-        private bool isRunning;
-        private bool isEnabled;
-        private bool isRemembered;
-        #endregion
 
         #region Properties
 
-
+        private string email;
         public string Email
         {
             get { return email; }
-            set { email = value; }
+            set { SetValue(ref email, value); }
         }
-        
 
-        public String Password
+        private string password;
+        public string Password
         {
             get { return password; }
-            set { password = value; }
+            set { SetValue(ref password, value); }
         }
-        
 
+        private bool isRunning;
         public bool IsRunning
         {
             get { return isRunning; }
-            set { isRunning = value; }
+            set { SetValue(ref isRunning, value); }
         }
-        
 
+        private bool isRemembered;
         public bool IsRemembered
         {
             get { return isRemembered; }
             set { isRemembered = value; }
         }
 
-        public bool IsEnabled
+        private bool isEnabledBool;
+        public bool IsEnabledBool
         {
-            get { return isEnabled; }
-            set { isEnabled = value; }
+            get { return isEnabledBool; }
+            set { SetValue(ref isEnabledBool, value); }
         }
         #endregion
         #region Constructors
         public LoginViewModel()
         {
-            this.IsRemembered = true;
-            this.IsEnabled = false;
+            IsRemembered = true;
+            isEnabledBool = true;
+            //http://restcountries.eu/rest/v2/all
         }
         #endregion
 
@@ -76,7 +65,18 @@ namespace Lands.ViewModels
 
         private async void Login()
         {
-            if (string.IsNullOrEmpty(this.Email))
+            var checkConection = await apiService.CheckConnection();
+            if (!checkConection.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    checkConection.Message,
+                    "Accept"
+                    );
+                return;
+            }
+
+            if (string.IsNullOrEmpty(Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -84,7 +84,7 @@ namespace Lands.ViewModels
                     "Accept");
                 return;
             }
-            if (string.IsNullOrEmpty(this.Password))
+            if (string.IsNullOrEmpty(Password))
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -92,21 +92,25 @@ namespace Lands.ViewModels
                     "Accept");
                 return;
             }
-            if (this.Email != "jzuluaga55@gmail.com" || this.Password != "1234")
+            IsRunning = true;
+
+            if (Email != "prueba@gmail.com" || Password != "1234")
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
                     "Email or password incorrect",
                     "Accept");
-                this.Password = string.Empty;
+                Password = string.Empty;
+                IsRunning = false;
                 return;
             }
-            await Application.Current.MainPage.DisplayAlert(
-                    "Ok",
-                    "Fuck yeaah",
-                    "Accept");
-            return;
+            Password = string.Empty;
+            IsRunning = false;
 
+            Email = string.Empty;
+            Password = string.Empty;
+            MainViewModel.GetInstance().Lands = new LandsViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new LandsPage());
         }
 
         public ICommand RegisterCommand
