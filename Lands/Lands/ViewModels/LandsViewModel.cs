@@ -17,7 +17,7 @@ namespace Lands.ViewModels
 
         public string TextoPrueba {
             get { return this.textoPrueba; }
-            set { SetValue(ref this.textoPrueba, value); }
+            set { SetProperty(ref this.textoPrueba, value); }
         }
 
         private ApiService apiService;
@@ -26,13 +26,13 @@ namespace Lands.ViewModels
         public ObservableCollection<Land> Lands
         {
             get { return this.lands; }
-            set { SetValue(ref this.lands, value); }
+            set { SetProperty(ref this.lands, value); }
         }
         private bool isRefreshing;
         public bool IsRefreshing
         {
             get { return this.isRefreshing; }
-            set { SetValue(ref this.isRefreshing, value); }
+            set { SetProperty(ref this.isRefreshing, value); }
         }
 
         public LandsViewModel()

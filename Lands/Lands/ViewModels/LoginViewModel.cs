@@ -14,21 +14,21 @@ namespace Lands.ViewModels
         public string Email
         {
             get { return email; }
-            set { SetValue(ref email, value); }
+            set { SetProperty(ref email, value); }
         }
 
         private string password;
         public string Password
         {
             get { return password; }
-            set { SetValue(ref password, value); }
+            set { SetProperty(ref password, value); }
         }
 
         private bool isRunning;
         public bool IsRunning
         {
             get { return isRunning; }
-            set { SetValue(ref isRunning, value); }
+            set { SetProperty(ref isRunning, value); }
         }
 
         private bool isRemembered;
@@ -42,7 +42,7 @@ namespace Lands.ViewModels
         public bool IsEnabledBool
         {
             get { return isEnabledBool; }
-            set { SetValue(ref isEnabledBool, value); }
+            set { SetProperty(ref isEnabledBool, value); }
         }
         #endregion
         #region Constructors
