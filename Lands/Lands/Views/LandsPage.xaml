@@ -6,8 +6,40 @@
              Title="Lands">
     <ContentPage.Content>
         <StackLayout Padding="5">
-            <ListView ItemsSource="{Binding Lands}">
-                
+            <ListView 
+                ItemsSource="{Binding Lands}"
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}"
+                RefreshCommand="{Binding RefreshCommand}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="0"
+                                             VerticalOptions="Center">
+                                    <Label 
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        TextColor="Black"
+                                        Text="{Binding Name}"/>
+                                    <Label 
+                                        TextColor="Black"
+                                        Text="{Binding Capital}"/>
+                                </StackLayout>
+                                <BoxView
+                                    BackgroundColor="Red"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center">
+                                </BoxView>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
     </ContentPage.Content>

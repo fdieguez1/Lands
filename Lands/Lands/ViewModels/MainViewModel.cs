@@ -12,19 +12,12 @@ namespace Lands.ViewModels
             get;
             set;
         }
-        public LandsViewModel Lands
+        public LandsViewModel lands
         {
             get;
             set;
         }
         #endregion
-        #region Constructors
-        public MainViewModel()
-        {
-            Login = new LoginViewModel();
-        }
-        #endregion
-
         #region Singleton
         private static MainViewModel instance;
 
@@ -34,11 +27,17 @@ namespace Lands.ViewModels
             {
                 return new MainViewModel();
             }
-            else
-            {
-                return instance;
-            }
+            return instance;
         }
         #endregion
+
+        #region Constructors
+        public MainViewModel()
+        {
+            Login = new LoginViewModel();
+        }
+        #endregion
+
+        
     }
 }
