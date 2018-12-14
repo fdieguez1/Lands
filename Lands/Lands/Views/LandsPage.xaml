@@ -1,15 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="Lands.Views.LandsPage"
              Title="Lands">
     <ContentPage.Content>
         <StackLayout Padding="5">
+            <Label Text="{Binding TextoPrueba, Mode=TwoWay}"></Label>
             <ListView 
                 ItemsSource="{Binding Lands}"
                 HasUnevenRows="True"
                 IsPullToRefreshEnabled="True"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Start"
+                HeightRequest="400"
                 IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}"
                 RefreshCommand="{Binding RefreshCommand}">
                 <ListView.ItemTemplate>
@@ -41,6 +44,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Label Text="LabelEnd"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

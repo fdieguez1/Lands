@@ -12,18 +12,27 @@ namespace Lands.ViewModels
 {
     public class LandsViewModel : BaseViewModel
     {
+
+        private string textoPrueba;
+
+        public string TextoPrueba {
+            get { return this.textoPrueba; }
+            set { SetValue(ref this.textoPrueba, value); }
+        }
+
         private ApiService apiService;
         private ObservableCollection<Land> lands;
 
         public ObservableCollection<Land> Lands
         {
-            get { return lands; }
-            set { SetValue(ref lands, value); }
+            get { return this.lands; }
+            set { SetValue(ref this.lands, value); }
         }
+        private bool isRefreshing;
         public bool IsRefreshing
         {
-            get { return isRefreshing; }
-            set { SetValue(ref isRefreshing, value); }
+            get { return this.isRefreshing; }
+            set { SetValue(ref this.isRefreshing, value); }
         }
 
         public LandsViewModel()
@@ -31,7 +40,7 @@ namespace Lands.ViewModels
             apiService = new ApiService();
             LoadLands();
         }
-        private bool isRefreshing;
+        
 
         
         private async void LoadLands()
@@ -82,6 +91,5 @@ namespace Lands.ViewModels
                 return new RelayCommand(LoadLands);
             }
         }
-
     }
 }
